@@ -1,9 +1,35 @@
 import { StatusBar } from "expo-status-bar";
+import { useState } from "react";
 import { StyleSheet, Text, TextInput, View, Button, Image } from "react-native";
+const { Configuration, OpenAIApi } = require("openai");
+
+const configuration = new Configuration({
+  apiKey: "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",
+});
+
+const openai = new OpenAIApi(configuration);
 
 export default function App() {
-  const handleSubmit = () => {
-    console.log("handel submit");
+  const [value, setValue] = useState("");
+
+  const handleSubmit = async () => {
+    console.log("value", value);
+
+    const completion = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "user", content: "Hello world" }],
+    });
+
+    completion.then(
+      (result) => {
+        console.log(result);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+    console.log("completion", completion);
   };
 
   return (
@@ -19,7 +45,12 @@ export default function App() {
       <View style={styles.input_container}>
         <View style={styles.row}>
           <View style={styles.input_box}>
-            <TextInput placeholder="some text" style={styles.input} />
+            <TextInput
+              placeholder="some text"
+              style={styles.input}
+              value={value}
+              onChangeText={(val) => setValue(val)}
+            />
           </View>
           <Button
             onPress={handleSubmit}
@@ -73,7 +104,14 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   input_box: { padding: 10 },
-  input: { borderColor: "#841584", borderWidth: 1, padding: 3, width: 250 },
+  input: {
+    borderColor: "#841584",
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    width: 250
+  },
   footer: {
     backgroundColor: "#fff",
     alignItems: "center",
