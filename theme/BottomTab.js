@@ -1,10 +1,10 @@
-import { Text, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import HomeScreen from "../screens/HomeScreen";
 import DowlandsScreen from "../screens/DowlandsScreen";
 import GameScreen from "../screens/GameScreen";
 import Header from "./Header";
+import DetailsScreen from "../screens/DetailsScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -63,7 +63,24 @@ export default function BottomTab() {
             />
           ),
           header: () => {
-            return <Header title={'Dowlands'} />;
+            return <Header title={"Dowlands"} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="DetailsScreen"
+        component={DetailsScreen}
+        options={{
+          tabBarLabel: "DetailsScreen",
+          tabBarIcon: ({ size }) => (
+            <MaterialCommunityIcons
+              name="arrow-down-circle-outline"
+              color="white"
+              size={size}
+            />
+          ),
+          header: () => {
+            return <Header title={"Details"} />;
           },
         }}
       />
