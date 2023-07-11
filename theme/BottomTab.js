@@ -51,6 +51,23 @@ export default function BottomTab() {
         }}
       />
       <Tab.Screen
+        name="DetailsScreen"
+        component={DetailsScreen}
+        options={{
+          tabBarLabel: "DetailsScreen",
+          tabBarIcon: ({ size }) => (
+            <MaterialCommunityIcons
+              name="new-box"
+              color="white"
+              size={size}
+            />
+          ),
+          header: () => {
+            return <Header title={"Details"} />;
+          },
+        }}
+      />
+      <Tab.Screen
         name="DowlandsScreen"
         component={DowlandsScreen}
         options={{
@@ -64,23 +81,6 @@ export default function BottomTab() {
           ),
           header: () => {
             return <Header title={"Dowlands"} />;
-          },
-        }}
-      />
-      <Tab.Screen
-        name="DetailsScreen"
-        component={DetailsScreen}
-        options={{
-          tabBarLabel: "DetailsScreen",
-          tabBarIcon: ({ size }) => (
-            <MaterialCommunityIcons
-              name="arrow-down-circle-outline"
-              color="white"
-              size={size}
-            />
-          ),
-          header: () => {
-            return <Header title={"Details"} />;
           },
         }}
       />

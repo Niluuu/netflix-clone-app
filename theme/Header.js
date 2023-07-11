@@ -6,16 +6,16 @@ import tw from "twrnc";
 const Header = ({ title }) => {
   return (
     <View
-      style={tw`p-4 max-w-fit min-h-fit bg-black sticky top-0`}
+      style={tw`p-4 max-w-fit min-h-fit bg-black top-0`}
       animHeaderValue={0}
     >
       <View style={tw`flex-row justify-between content-center`}>
         <View>
           {!title ? (
             <Image
-              source={require("../assets/netflix-logo.png")}
+              source={require("../assets/icon.jpg")}
               style={{
-                width: 40,
+                width: 30,
                 height: 40,
                 backfaceVisibility: "hidden",
               }}

@@ -1,4 +1,5 @@
-import React, { Component, useRef } from "react";
+import React from "react";
+import tw from "twrnc";
 import {
   FlatList,
   ImageBackground,
@@ -10,7 +11,6 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 import IconFont from "react-native-vector-icons/FontAwesome";
-import tw from "twrnc";
 
 const Movies = {
   title: "Trends now",
