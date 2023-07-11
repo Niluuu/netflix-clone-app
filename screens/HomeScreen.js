@@ -25,7 +25,11 @@ const Movies = {
 const HomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={tw`bg-black`}>
-      <ScrollView>
+      <ScrollView
+        alwaysBounceHorizontal={false}
+        alwaysBounceVertical={false}
+        bounces={false}
+      >
         {/* Banner */}
         <View style={tw`max-w-fit h-96 relative`}>
           <View style={tw`w-full`}>
