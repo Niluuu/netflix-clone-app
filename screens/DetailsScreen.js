@@ -7,11 +7,12 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
+  ImageBackground,
+  FlatList,
 } from "react-native";
 import { Tab, TabView, Dialog } from "@rneui/themed";
 import Icon from "react-native-vector-icons/AntDesign";
 import IconFont from "react-native-vector-icons/FontAwesome";
-import { FlatList } from "react-native-gesture-handler";
 
 const movie = {
   name: "Wednesday",
@@ -20,6 +21,30 @@ const movie = {
   seasons: 4,
   description:
     "Wednesday is an American coming-of-age supernatural mystery comedy horror television series based on the character Wednesday Addams by Charles Addams. Created by Alfred Gough and Miles Millar, it stars Jenna Ortega as the titular character, with Gwendoline Christie, Riki Lindhome, Jamie McShane, Hunter Doohan, Percy Hynes White, Emma Myers, Joy Sunday, Georgie Farmer, Naomi J. Ogawa, Christina Ricci, and Moosa Mostafa appearing in supporting roles. Four out of the eight episodes are directed by Tim Burton, who also serves as executive producer. It revolves around Wednesday Addams, who attempts to solve a murder mystery at her new school.",
+  episodes: [
+    {
+      name: "Some episode name",
+      id: "someid",
+      min: 57,
+      video: "url",
+      description:
+        "Wednesday is an American coming-of-age supernatural mystery comedy horror television series based on the character Wednesday Addams",
+    },
+    {
+      name: "2 Some episode name longer than first one ",
+      min: 47,
+      id: "2someid",
+      video: "url",
+      description:
+        "Wednesday is an American coming-of-age supernatural mystery comedy horror television series based on the character Wednesday Addams",
+    },
+  ],
+  similar: [
+    { id: "1", imagePath: require("../assets/movie-1.jpg") },
+    { id: "2", imagePath: require("../assets/movie-2.jpg") },
+    { id: "3", imagePath: require("../assets/movie-1.jpg") },
+    { id: "4", imagePath: require("../assets/movie-2.jpg") },
+  ],
 };
 
 export default function DetailsScreen({ route, navigation }) {
@@ -28,9 +53,8 @@ export default function DetailsScreen({ route, navigation }) {
 
   const toggleDialog = () => setDialog(!dialog);
 
-
-  const seasonsList = new Array(movie.seasons);
-  console.log('seasonsList', seasonsList)
+  const seasonsList = new Array(4);
+  console.log("seasonsList", seasonsList);
   return (
     <SafeAreaView style={tw`bg-black`}>
       <ScrollView
@@ -77,10 +101,45 @@ export default function DetailsScreen({ route, navigation }) {
           <Text style={tw`text-white`}>Dowland</Text>
         </TouchableOpacity>
         <View>
-          {/* <Text style={tw`text-white py-4`}>{movie.description}</Text> */}
+          <Text style={tw`text-white py-4`}>{movie.description}</Text>
+        </View>
+
+        {/* Actions */}
+        {/* TODO: Add some redusers and action for this button  */}
+        <View style={tw`flex flex-row py-4`}>
+          <View
+            style={tw`flex flex-col justify-beetween content-center items-center px-1 mx-4`}
+          >
+            <Icon name="plus" size={25} style={tw`m-auto`} color="#fff" />
+            <Text style={tw`text-white`}>Wish list</Text>
+          </View>
+          <View
+            style={tw`flex flex-col justify-beetween content-center items-center px-1 mx-4`}
+          >
+            <IconFont
+              name="thumbs-o-up"
+              size={25}
+              style={tw`m-auto`}
+              color="#fff"
+            />
+            <Text style={tw`text-white`}>Wish list</Text>
+          </View>
+          <View
+            style={tw`flex flex-col justify-beetween content-center items-center px-1 mx-4`}
+          >
+            <Icon name="sharealt" size={25} style={tw`m-auto`} color="#fff" />
+            <Text style={tw`text-white`}>Wish list</Text>
+          </View>
+          <View
+            style={tw`flex flex-col justify-beetween content-center items-center px-1 mx-4`}
+          >
+            <Icon name="download" size={25} style={tw`m-auto`} color="#fff" />
+            <Text style={tw`text-white`}>Wish list</Text>
+          </View>
         </View>
 
         {/* Tab */}
+        {/* TODO: Fix tab view */}
         <Tab
           value={index}
           onChange={setIndex}
@@ -130,23 +189,72 @@ export default function DetailsScreen({ route, navigation }) {
             onBackdropPress={toggleDialog}
             overlayStyle={{ backgroundColor: "transperent" }}
           >
-              <FlatList
-                data={seasonsList}
-                renderItem={({ item }) => (
-                  <TouchableOpacity
-                    activeOpacity={0.6}
-                    key={item}
-                    style={tw`rounded pl-1 m-auto`}
-                    onPressOut={toggleDialog}
-                  >
-                    
-                    <Text style={tw`text-white text-2xl font-bold py-2`}>
-                      1 seasons
-                    </Text>
-                  </TouchableOpacity>
-                )}
-              />
+            <FlatList
+              data={seasonsList}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  activeOpacity={0.6}
+                  key={item}
+                  style={tw`rounded pl-1 m-auto`}
+                  onPressOut={toggleDialog}
+                >
+                  <Text style={tw`text-white text-2xl font-bold py-2`}>
+                    {item} seasons
+                  </Text>
+                </TouchableOpacity>
+              )}
+            />
           </Dialog>
+        </View>
+
+        <View>
+          <FlatList
+            data={movie.episodes}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                activeOpacity={0.6}
+                key={item.id}
+                style={tw`rounded py-4 flex flex-row py-2`}
+                onPress={() => {
+                  navigation.navigate("DetailsScreen", {
+                    itemId: item.id,
+                  });
+                }}
+              >
+                <View style={tw`pr-2 `}>
+                  <View style={tw`flex flex-row py-2`}>
+                    <ImageBackground
+                      style={{
+                        resizeMode: "cover",
+                        alignSelf: "flex-start",
+                        width: 140,
+                        height: 100,
+                        overflow: "hidden",
+                      }}
+                      source={require("../assets/banner.jpg")}
+                    />
+                    <View style={tw`w-50 px-4`}>
+                      <Text style={tw`text-l text-white font-bold`}>
+                        {item.name}
+                      </Text>
+                      <Text style={tw`text-l text-white text-stone-300`}>
+                        {item.min} min
+                      </Text>
+                    </View>
+                  </View>
+                  <Text style={tw`text-white text-stone-300`}>
+                    {item.description}
+                  </Text>
+                </View>
+                <Icon
+                  name="download"
+                  size={22}
+                  style={tw`mx-2 py-6`}
+                  color="#fff"
+                />
+              </TouchableOpacity>
+            )}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
