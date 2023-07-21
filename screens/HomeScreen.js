@@ -46,19 +46,19 @@ const HomeScreen = ({ navigation }) => {
             <View
               style={tw`flex-row justify-center items-center content-center absolute bottom-0 left-0 px-6 py-2  w-full`}
             >
-              <View
+              <TouchableOpacity
                 style={tw`flex flex-col justify-beetween content-center items-center px-1 mx-4`}
               >
                 <Icon name="plus" size={25} style={tw`m-auto`} color="#fff" />
                 <Text style={tw`text-white`}>Wish list</Text>
-              </View>
+              </TouchableOpacity>
               <TouchableOpacity
                 style={tw`flex flex-row justify-beetween content-center items-center px-4 py-2 mx-4 bg-white rounded`}
               >
                 <IconFont name="play" size={18} style={tw`pr-2`} color="#000" />
                 <Text style={tw`text-black`}>Watch now</Text>
               </TouchableOpacity>
-              <View
+              <TouchableOpacity
                 style={tw`flex flex-col justify-beetween content-center items-center px-1 mx-4`}
               >
                 <Icon
@@ -68,7 +68,7 @@ const HomeScreen = ({ navigation }) => {
                   color="#fff"
                 />
                 <Text style={tw`text-white`}>Wish list</Text>
-              </View>
+              </TouchableOpacity>
             </View>
           </View>
         </View>

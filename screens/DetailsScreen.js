@@ -205,9 +205,6 @@ export default function DetailsScreen({ route, navigation }) {
               )}
             />
           </Dialog>
-        </View>
-
-        <View>
           <FlatList
             data={movie.episodes}
             renderItem={({ item }) => (
