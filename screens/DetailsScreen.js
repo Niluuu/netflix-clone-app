@@ -105,15 +105,14 @@ export default function DetailsScreen({ route, navigation }) {
         </View>
 
         {/* Actions */}
-        {/* TODO: Add some redusers and action for this button  */}
         <View style={tw`flex flex-row py-4`}>
-          <View
+          <TouchableOpacity
             style={tw`flex flex-col justify-beetween content-center items-center px-1 mx-4`}
           >
             <Icon name="plus" size={25} style={tw`m-auto`} color="#fff" />
             <Text style={tw`text-white`}>Wish list</Text>
-          </View>
-          <View
+          </TouchableOpacity>
+          <TouchableOpacity
             style={tw`flex flex-col justify-beetween content-center items-center px-1 mx-4`}
           >
             <IconFont
@@ -123,19 +122,19 @@ export default function DetailsScreen({ route, navigation }) {
               color="#fff"
             />
             <Text style={tw`text-white`}>Wish list</Text>
-          </View>
-          <View
+          </TouchableOpacity>
+          <TouchableOpacity
             style={tw`flex flex-col justify-beetween content-center items-center px-1 mx-4`}
           >
             <Icon name="sharealt" size={25} style={tw`m-auto`} color="#fff" />
             <Text style={tw`text-white`}>Wish list</Text>
-          </View>
-          <View
+          </TouchableOpacity>
+          <TouchableOpacity
             style={tw`flex flex-col justify-beetween content-center items-center px-1 mx-4`}
           >
             <Icon name="download" size={25} style={tw`m-auto`} color="#fff" />
             <Text style={tw`text-white`}>Wish list</Text>
-          </View>
+          </TouchableOpacity>
         </View>
 
         {/* Tab */}
