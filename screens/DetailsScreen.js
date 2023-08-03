@@ -10,9 +10,10 @@ import {
   ImageBackground,
   FlatList,
 } from "react-native";
-import { Tab, TabView, Dialog } from "@rneui/themed";
+import { Dialog } from "@rneui/themed";
 import Icon from "react-native-vector-icons/AntDesign";
 import IconFont from "react-native-vector-icons/FontAwesome";
+import Tab from "../theme/components/Tab";
 
 const movie = {
   name: "Wednesday",
@@ -139,40 +140,7 @@ export default function DetailsScreen({ route, navigation }) {
 
         {/* Tab */}
         {/* TODO: Fix tab view */}
-        <Tab
-          value={index}
-          onChange={setIndex}
-          titleStyle={{ color: "white" }}
-          indicatorStyle={{
-            backgroundColor: "rgb(220 38 38)",
-            height: 4,
-            position: "absolute",
-            top: 0,
-          }}
-        >
-          <Tab.Item>Episode</Tab.Item>
-          <Tab.Item containerStyle={{ whiteSpace: "nowrap" }}>
-            Thrillers
-          </Tab.Item>
-          <Tab.Item>Similar</Tab.Item>
-        </Tab>
-
-        <TabView
-          value={index}
-          onChange={setIndex}
-          animationType="spring"
-          tabItemContainerStyle={{
-            backgroundColor: "red",
-          }}
-        >
-          <TabView.Item></TabView.Item>
-          <TabView.Item style={{ backgroundColor: "blue", width: "100%" }}>
-            <Text>Favorite</Text>
-          </TabView.Item>
-          <TabView.Item style={{ backgroundColor: "blue", width: "100%" }}>
-            <Text>more</Text>
-          </TabView.Item>
-        </TabView>
+        <Tab />
 
         <View>
           <TouchableOpacity
