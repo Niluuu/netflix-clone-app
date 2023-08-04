@@ -9,8 +9,10 @@ import {
   ScrollView,
   ImageBackground,
   FlatList,
+  StyleSheet,
 } from "react-native";
 import { Dialog } from "@rneui/themed";
+import { Video } from "expo-av";
 import Icon from "react-native-vector-icons/AntDesign";
 import IconFont from "react-native-vector-icons/FontAwesome";
 import Tab from "../theme/components/Tab";
@@ -51,11 +53,12 @@ const movie = {
 export default function DetailsScreen({ route, navigation }) {
   const [index, setIndex] = useState(0);
   const [dialog, setDialog] = useState(false);
+  const video = React.useRef(null);
 
   const toggleDialog = () => setDialog(!dialog);
 
   const seasonsList = new Array(4);
-  console.log("seasonsList", seasonsList);
+
   return (
     <SafeAreaView style={tw`bg-black`}>
       <ScrollView
@@ -64,13 +67,14 @@ export default function DetailsScreen({ route, navigation }) {
         bounces={false}
       >
         <View style={tw`pb-4`}>
-          <Image
-            source={require("../assets/banner.jpg")}
-            style={{
-              resizeMode: "cover",
-              width: "100%",
-              height: 300,
-            }}
+          <Video
+            ref={video}
+            style={styles.video}
+            source={require("../assets/video.mp4")}
+            useNativeControls
+            resizeMode="contain"
+            isLooping
+            audioPan
           />
           <Text style={tw`text-white text-4xl font-bold py-4`}>
             {movie.name}
@@ -91,7 +95,7 @@ export default function DetailsScreen({ route, navigation }) {
           style={tw`flex flex-row justify-center items-center bg-white py-2 rounded my-2`}
         >
           <IconFont name="play" size={20} style={tw`mx-2`} color="#000" />
-          <Text>Watch</Text>
+          <Text onPress={navigation.navigate("DetailsScreen")}>Watch</Text>
         </TouchableOpacity>
         <TouchableOpacity
           activeOpacity={0.3}
@@ -224,3 +228,15 @@ export default function DetailsScreen({ route, navigation }) {
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  video: {
+    width: "100%",
+    height: 300,
+  },
+});

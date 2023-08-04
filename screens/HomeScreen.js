@@ -8,7 +8,9 @@ import {
   TouchableOpacity,
   View,
   ScrollView,
+  StyleSheet
 } from "react-native";
+import { Video } from "expo-av";
 import Icon from "react-native-vector-icons/AntDesign";
 import IconFont from "react-native-vector-icons/FontAwesome";
 
@@ -23,6 +25,8 @@ const Movies = {
 };
 
 const HomeScreen = ({ navigation }) => {
+  const video = React.useRef(null);
+
   return (
     <SafeAreaView style={tw`bg-black`}>
       <ScrollView
@@ -33,15 +37,13 @@ const HomeScreen = ({ navigation }) => {
         {/* Banner */}
         <View style={tw`max-w-fit h-96 relative`}>
           <View style={tw`w-full`}>
-            <ImageBackground
-              source={require("../assets/banner.jpg")}
-              style={{
-                resizeMode: "cover",
-                alignSelf: "flex-start",
-                width: "100%",
-                height: "100%",
-                aspectRatio: 6 / 3,
-              }}
+            <Video
+              ref={video}
+              style={styles.video}
+              source={require("../assets/video.mp4")}
+              resizeMode="contain"
+              isLooping
+              audioPan
             />
             <View
               style={tw`flex-row justify-center items-center content-center absolute bottom-0 left-0 px-6 py-2  w-full`}
@@ -137,5 +139,17 @@ const HomeScreen = ({ navigation }) => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  video: {
+    width: "170%",
+    height: 380,
+  },
+});
 
 export default HomeScreen;
