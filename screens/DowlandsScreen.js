@@ -16,38 +16,7 @@ import IconFont from "react-native-vector-icons/FontAwesome";
 
 export default function DowlandsScreen() {
   const [index, setIndex] = React.useState(0);
-  const movie = {
-    name: "Wednesday",
-    year: "2020",
-    age: "18",
-    seasons: 4,
-    description:
-      "Wednesday is an American coming-of-age supernatural mystery comedy horror television series based on the character Wednesday Addams",
-    episodes: [
-      {
-        name: "Some episode name",
-        id: "someid",
-        min: 57,
-        video: "url",
-        description:
-          "Wednesday is an American coming-of-age supernatural mystery comedy horror television series based on the character Wednesday Addams",
-      },
-      {
-        name: "2 Some episode name longer than first one ",
-        min: 47,
-        id: "2someid",
-        video: "url",
-        description:
-          "Wednesday is an American coming-of-age supernatural mystery comedy horror television series based on the character Wednesday Addams",
-      },
-    ],
-    similar: [
-      { id: "1", imagePath: require("../assets/movie-1.jpg") },
-      { id: "2", imagePath: require("../assets/movie-2.jpg") },
-      { id: "3", imagePath: require("../assets/movie-1.jpg") },
-      { id: "4", imagePath: require("../assets/movie-2.jpg") },
-    ],
-  };
+ 
 
   return (
     <View
@@ -96,56 +65,22 @@ export default function DowlandsScreen() {
               style={tw`m-auto`}
               color="#fff"
             />
-            <Text style={tw`text-white`}>Wish list</Text>
+            <Text style={tw`text-white`}>Like</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={tw`flex flex-col justify-beetween content-center items-center px-1 mx-4`}
           >
             <Icon name="sharealt" size={25} style={tw`m-auto`} color="#fff" />
-            <Text style={tw`text-white`}>Wish list</Text>
+            <Text style={tw`text-white`}>Share</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={tw`flex flex-col justify-beetween content-center items-center px-1 mx-4`}
           >
             <Icon name="download" size={25} style={tw`m-auto`} color="#fff" />
-            <Text style={tw`text-white`}>Wish list</Text>
+            <Text style={tw`text-white`}>Dowland</Text>
           </TouchableOpacity>
         </View>
       </View>
-
-      <Tab
-        value={index}
-        onChange={setIndex}
-        titleStyle={{ color: "white" }}
-        indicatorStyle={{
-          backgroundColor: "rgb(220 38 38)",
-          height: 4,
-          position: "absolute",
-          top: 0,
-        }}
-      >
-        <Tab.Item>Episode</Tab.Item>
-        <Tab.Item containerStyle={{ whiteSpace: "nowrap" }}>Thrillers</Tab.Item>
-        <Tab.Item>Similar</Tab.Item>
-      </Tab>
-
-      <TabView value={index} onChange={setIndex}>
-        <TabView.Item
-          style={{ backgroundColor: "red", width: "100%", height: "50%" }}
-        >
-          <Text style={tw`text-white`}>Wish list</Text>
-        </TabView.Item>
-        <TabView.Item
-          style={{ backgroundColor: "red", width: "100%", height: "50%" }}
-        >
-          <Text style={tw`text-white`}>Favorite</Text>
-        </TabView.Item>
-        <TabView.Item
-          style={{ backgroundColor: "blue", width: "100%", height: "50%" }}
-        >
-          <Text style={tw`text-white`}>more</Text>
-        </TabView.Item>
-      </TabView>
     </View>
   );
 }

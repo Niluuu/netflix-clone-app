@@ -9,52 +9,10 @@ import {
 import tw from "twrnc";
 import { Dialog } from "@rneui/themed";
 import Icon from "react-native-vector-icons/AntDesign";
-
-const movie = {
-  name: "Wednesday",
-  year: "2020",
-  age: "18",
-  seasons: 4,
-  description:
-    "Wednesday is an American coming-of-age supernatural mystery comedy horror television series based on the character Wednesday Addams by Charles Addams. Created by Alfred Gough and Miles Millar, it stars Jenna Ortega as the titular character, with Gwendoline Christie, Riki Lindhome, Jamie McShane, Hunter Doohan, Percy Hynes White, Emma Myers, Joy Sunday, Georgie Farmer, Naomi J. Ogawa, Christina Ricci, and Moosa Mostafa appearing in supporting roles. Four out of the eight episodes are directed by Tim Burton, who also serves as executive producer. It revolves around Wednesday Addams, who attempts to solve a murder mystery at her new school.",
-  episodes: [
-    {
-      name: "Some episode name",
-      id: "someid",
-      min: 57,
-      video: "url",
-      description:
-        "Wednesday is an American coming-of-age supernatural mystery comedy horror television series based on the character Wednesday Addams",
-    },
-    {
-      name: "2 Some episode name longer than first one ",
-      min: 47,
-      id: "2someid",
-      video: "url",
-      description:
-        "Wednesday is an American coming-of-age supernatural mystery comedy horror television series based on the character Wednesday Addams",
-    },
-  ],
-  similar: [
-    { id: "1", imagePath: require("../../assets/movie-1.jpg") },
-    { id: "2", imagePath: require("../../assets/movie-2.jpg") },
-    { id: "3", imagePath: require("../../assets/movie-1.jpg") },
-    { id: "4", imagePath: require("../../assets/movie-2.jpg") },
-  ],
-};
+import { movieDetail, movieCategories } from "../../utils/testMovie";
 
 
-const Movies = {
-  title: "Trends now",
-  movies: [
-    { id: "1", imagePath: require("../../assets/movie-1.jpg") },
-    { id: "2", imagePath: require("../../assets/movie-2.jpg") },
-    { id: "3", imagePath: require("../../assets/movie-1.jpg") },
-    { id: "4", imagePath: require("../../assets/movie-2.jpg") },
-  ],
-};
-
-const seasonsList = Array.from({ length: movie.seasons }, (_, index) => index + 1);;
+const seasonsList = Array.from({ length: movieDetail.seasons }, (_, index) => index + 1);;
 
 export const TabEpisodes = () => {
   const [dialog, setDialog] = useState(false);
@@ -62,7 +20,6 @@ export const TabEpisodes = () => {
 
   const toggleDialog = () => setDialog(!dialog);
 
-  console.log('seasonsList', seasonsList)
   return (
     <View>
       <TouchableOpacity
@@ -95,17 +52,12 @@ export const TabEpisodes = () => {
         />
       </Dialog>
       <FlatList
-        data={movie.episodes}
+        data={movieDetail.episodes}
         renderItem={({ item }) => (
           <TouchableOpacity
             activeOpacity={0.6}
             key={item.id}
             style={tw`rounded py-4 flex flex-row py-2`}
-            onPress={() => {
-              //   navigation.navigate("DetailsScreen", {
-              //     itemId: item.id,
-              //   });
-            }}
           >
             <View style={tw`pr-2 `}>
               <View style={tw`flex flex-row py-2`}>
@@ -149,17 +101,12 @@ export const TabThrillers = () => {
   return (
     <View>
       <FlatList
-        data={movie.episodes}
+        data={movieDetail.episodes}
         renderItem={({ item }) => (
           <TouchableOpacity
             activeOpacity={0.6}
             key={item.id}
             style={tw`rounded py-4 flex flex-row py-2`}
-            onPress={() => {
-              //   navigation.navigate("DetailsScreen", {
-              //     itemId: item.id,
-              //   });
-            }}
           >
             <View style={tw`flex flex-row py-4`}>
               <ImageBackground
@@ -191,17 +138,12 @@ export const TabSimilar = () => {
     <View>
       <FlatList
         numColumns={3}
-        data={Movies.movies}
+        data={movieCategories.movies}
         renderItem={({ item }) => (
           <TouchableOpacity
             activeOpacity={0.6}
             key={item.id}
             style={tw`rounded py-4 flex flex-row py-2`}
-            onPress={() => {
-              //   navigation.navigate("DetailsScreen", {
-              //     itemId: item.id,
-              //   });
-            }}
           >
             <View style={tw`flex flex-row p-2 `}>
               <ImageBackground

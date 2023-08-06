@@ -16,42 +16,10 @@ import { Video } from "expo-av";
 import Icon from "react-native-vector-icons/AntDesign";
 import IconFont from "react-native-vector-icons/FontAwesome";
 import Tab from "../theme/components/Tab";
+import { movieDetail } from "../utils/testMovie";
 
-const movie = {
-  name: "Wednesday",
-  year: "2020",
-  age: "18",
-  seasons: 4,
-  description:
-    "Wednesday is an American coming-of-age supernatural mystery comedy horror television series based on the character Wednesday Addams by Charles Addams. Created by Alfred Gough and Miles Millar, it stars Jenna Ortega as the titular character, with Gwendoline Christie, Riki Lindhome, Jamie McShane, Hunter Doohan, Percy Hynes White, Emma Myers, Joy Sunday, Georgie Farmer, Naomi J. Ogawa, Christina Ricci, and Moosa Mostafa appearing in supporting roles. Four out of the eight episodes are directed by Tim Burton, who also serves as executive producer. It revolves around Wednesday Addams, who attempts to solve a murder mystery at her new school.",
-  episodes: [
-    {
-      name: "Some episode name",
-      id: "someid",
-      min: 57,
-      video: "url",
-      description:
-        "Wednesday is an American coming-of-age supernatural mystery comedy horror television series based on the character Wednesday Addams",
-    },
-    {
-      name: "2 Some episode name longer than first one ",
-      min: 47,
-      id: "2someid",
-      video: "url",
-      description:
-        "Wednesday is an American coming-of-age supernatural mystery comedy horror television series based on the character Wednesday Addams",
-    },
-  ],
-  similar: [
-    { id: "1", imagePath: require("../assets/movie-1.jpg") },
-    { id: "2", imagePath: require("../assets/movie-2.jpg") },
-    { id: "3", imagePath: require("../assets/movie-1.jpg") },
-    { id: "4", imagePath: require("../assets/movie-2.jpg") },
-  ],
-};
 
-export default function DetailsScreen({ route, navigation }) {
-  const [index, setIndex] = useState(0);
+export default function DetailsScreen({ navigation }) {
   const [dialog, setDialog] = useState(false);
   const video = React.useRef(null);
 
@@ -72,20 +40,22 @@ export default function DetailsScreen({ route, navigation }) {
             style={styles.video}
             source={require("../assets/video.mp4")}
             useNativeControls
-            resizeMode="contain"
-            isLooping
-            audioPan
+            rate={1.0} 
+            volume={1.0}
+            isMuted={false} 
+            resizeMode="cover"
+            shouldPlay={false}
           />
           <Text style={tw`text-white text-4xl font-bold py-4`}>
-            {movie.name}
+            {movieDetail.name}
           </Text>
           <View style={tw`flex flex-row pb-2`}>
-            <Text style={tw`text-stone-300 px-2 `}>{movie.year}</Text>
+            <Text style={tw`text-stone-300 px-2 `}>{movieDetail.year}</Text>
             <Text style={tw`text-stone-300 px-2 mx-2 bg-stone-700`}>
-              {movie.age}+
+              {movieDetail.age}+
             </Text>
             <Text style={tw`text-stone-300 px-2 uppercase`}>
-              {movie.seasons} seasons
+              {movieDetail.seasons} seasons
             </Text>
           </View>
         </View>
@@ -106,7 +76,7 @@ export default function DetailsScreen({ route, navigation }) {
           <Text style={tw`text-white`}>Dowland</Text>
         </TouchableOpacity>
         <View>
-          <Text style={tw`text-white py-4`}>{movie.description}</Text>
+          <Text style={tw`text-white py-4`}>{movieDetail.description}</Text>
         </View>
 
         {/* Actions */}
@@ -143,7 +113,6 @@ export default function DetailsScreen({ route, navigation }) {
         </View>
 
         {/* Tab */}
-        {/* TODO: Fix tab view */}
         <Tab />
 
         <View>
@@ -177,7 +146,7 @@ export default function DetailsScreen({ route, navigation }) {
             />
           </Dialog>
           <FlatList
-            data={movie.episodes}
+            data={movieDetail.episodes}
             renderItem={({ item }) => (
               <TouchableOpacity
                 activeOpacity={0.6}
